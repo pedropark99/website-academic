@@ -1,6 +1,6 @@
 ---
 # Display name
-title: Nelson Bighetti
+title: Pedro Duarte Faria
 
 # Username (this should match the folder name)
 authors:
@@ -10,32 +10,29 @@ authors:
 superuser: true
 
 # Role/position
-role: Professor of Artificial Intelligence
+role: Undregrad Student of Economics
 
 # Organizations/Affiliations
 organizations:
-- name: Stanford University
-  url: ""
+- name: Federal University of Ouro Preto
+  url: "https://ufop.br/"
+- name: João Pinheiro Foundation
+  url: "http://novosite.fjp.mg.gov.br/"
+
 
 # Short bio (displayed in user profile at end of posts)
-bio: My research interests include distributed robotics, mobile computing and programmable matter.
+bio: I'm still young on economics, but my main interests on the field are.
 
 interests:
-- Artificial Intelligence
-- Computational Linguistics
-- Information Retrieval
+- Economics of Science and Technology
+- Macroeconomics
+- Keynesian and Schumpeterian Theory
 
 education:
   courses:
-  - course: PhD in Artificial Intelligence
-    institution: Stanford University
-    year: 2012
-  - course: MEng in Artificial Intelligence
-    institution: Massachusetts Institute of Technology
-    year: 2009
-  - course: BSc in Artificial Intelligence
-    institution: Massachusetts Institute of Technology
-    year: 2008
+  - course: BSc in Economics
+    institution: Federal University of Ouro Preto
+    year: expected 2021
 
 # Social/Academic Networking
 # For available icons, see: https://sourcethemes.com/academic/docs/page-builder/#icons
@@ -44,21 +41,21 @@ education:
 social:
 - icon: envelope
   icon_pack: fas
-  link: '#contact'  # For a direct email link, use "mailto:test@example.org".
-- icon: twitter
+  link: mailto:pedropark99@gmail.com.
+- icon: stack-overflow
   icon_pack: fab
-  link: https://twitter.com/GeorgeCushen
+  link: https://stackoverflow.com/users/14163533/pedro-faria?tab=profile
 - icon: google-scholar
   icon_pack: ai
-  link: https://scholar.google.co.uk/citations?user=sIwtMXoAAAAJ
+  link: https://scholar.google.com/citations?user=DRhvcpEAAAAJ&hl=en
 - icon: github
   icon_pack: fab
-  link: https://github.com/gcushen
+  link: https://github.com/pedropark99
 # Link to a PDF of your resume/CV from the About widget.
 # To enable, copy your resume/CV to `static/files/cv.pdf` and uncomment the lines below.
 # - icon: cv
-#   icon_pack: ai
-#   link: files/cv.pdf
+#  icon_pack: ai
+#  link: files/cv.pdf
 
 # Enter email to display Gravatar (if Gravatar enabled in Config)
 email: ""
@@ -70,6 +67,6 @@ user_groups:
 - Visitors
 ---
 
-Nelson Bighetti is a professor of artificial intelligence at the Stanford AI Lab. His research interests include distributed robotics, mobile computing and programmable matter. He leads the Robotic Neurobiology group, which develops self-reconfiguring robots, systems of self-organizing robots, and mobile sensor networks.
+Hi! I am Pedro, an undergrad student of Economics at Federal University of Ouro Preto - Brazil. My research interests include Macroeconomics and Economics of Science and Technology, specially involving the theories from Joseph Alois Schumpeter and John Maynard Keynes. I am a user of the R programming language (a bit addicted to it), and although I think in developing packages in the future, my main joy and fulfillment today, are in teaching this language to other students.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque elit, tristique placerat feugiat ac, facilisis vitae arcu. Proin eget egestas augue. Praesent ut sem nec arcu pellentesque aliquet. Duis dapibus diam vel metus tempus vulputate.
+I love to teach and to do scientific research. Be free to contact me, and ask for help on R, or to colabborate with me in a some research. Thank you for the attention.

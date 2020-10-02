@@ -74,4 +74,4 @@ user_groups:
 
 Hi! I am Pedro, an undergrad student of Economics at Federal University of Ouro Preto - Brazil. My research interests include Macroeconomics and Economics of Science and Technology, specially involving the theories from Joseph Alois Schumpeter and John Maynard Keynes. I am a user of the R programming language (a bit addicted to it), and although I think in developing packages in the future, my main joy and fulfillment today, are in teaching this language to other students.
 
-I love to teach and to do scientific research. Be free to contact me, and ask for help on R, or to colabborate with me in a some research. Thank you for the attention.
+I love to teach and to do scientific research. Be free to contact me, and ask for help on R, or to collaborate with me in some research. Thank you for the attention.

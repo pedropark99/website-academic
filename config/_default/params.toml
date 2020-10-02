@@ -291,6 +291,3 @@ plugins_js  = []
   ai = true # Academicons icon pack https://jpswalsh.github.io/academicons/
 
 
-[background]
-  # Background color.
-  color = "#478eff"

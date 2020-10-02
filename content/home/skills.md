@@ -21,16 +21,18 @@ subtitle = ""
   description = "90%"
   
 [[feature]]
-  icon = "chart-line"
+  icon = "database"
   icon_pack = "fas"
-  name = "Statistics"
-  description = "100%"  
+  name = "SQL"
+  description = "20%"
   
 [[feature]]
-  icon = "camera-retro"
-  icon_pack = "fas"
-  name = "Photography"
-  description = "10%"
+  icon = "Latex_logo"
+  icon_pack = "custom"
+  name = "Latex"
+  description = "50%"
+  
+
 
 # Uncomment to use emoji icons.
 # [[feature]]

@@ -7,6 +7,8 @@ authors: ["Pedro Duarte Faria"]
 tags: ["R Language", "Teaching"]
 categories: []
 date: 2020-10-03T12:00:10-03:00
+reading_time: true
+profile: true
 
 # Optional external URL for project (replaces project detail page).
 external_link: ""
@@ -42,4 +44,22 @@ slides: ""
 
 
 
-Lorem lipsum. testando.
+# Sobre o projeto
+
+Como a revista *The Economist*[^1] colocou: "Dados são o combustível do futuro". Essa nova dimensão tem gerado mudanças profundas sobre como a nossa economia tem se estruturado, gerando novos eventos (como *Big Data*) que tem exigido novas capacidades tanto análiticas de nós como economistas (e outros tipos de analistas), quanto computacionais de nossos computadores. Logo, aprender ferramentas mais eficientes e que dão maior suporte em nossa análise, tem se tornado uma necessidade maior no mercado de trabalho. 
+
+Por isso, este projeto tem como objetivo, compartilhar conhecimento dessa área com outras pessoas. Sempre gostei muito de ensinar, e após conhecer a Linguagem R, tenho mergulhado cada vez mais fundo neste projeto. Porém, esse curso não tem como objetivo, ser um curso muito abrangente, nem muito avançado sobre o R.
+
+
+
+
+[^1]: Para ler o artigo completo, veja: https://www.economist.com/briefing/2017/05/06/data-is-giving-rise-to-a-new-economy.
+
+
+
+
+
+
+
+
+

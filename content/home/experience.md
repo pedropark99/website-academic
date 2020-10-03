@@ -34,4 +34,21 @@ date_format = "Jan 2006"
 
 
 
+
+[[experience]]
+  title = "Intern of Business Inteligence"
+  company = "Fideleasy Consultoria"
+  company_url = ""
+  location = "Belo Horizonte - MG, Brazil"
+  date_start = "2019-02-01"
+  date_end = "2019-06-01"
+  description = """
+  Responsibilities include:
+    
+  * Create new compliance indicators
+  * Data analysis
+  * Automate tasks
+  """
+
+
 +++

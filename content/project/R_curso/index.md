@@ -2,7 +2,7 @@
 # Documentation: https://sourcethemes.com/academic/docs/managing-content/
 
 title: "Curso: Introdução à Linguagem R"
-summary: ""
+summary: "Um curso de Introdução à Linguagem que tenho desenvolvido nos últimos meses"
 authors: ["Pedro Duarte Faria"]
 tags: ["R Language", "Teaching"]
 categories: []

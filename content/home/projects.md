@@ -25,7 +25,7 @@ subtitle = ""
 
   [[content.filter_button]]
     name = "R Language Course"
-    tag = "*"
+    tag = "R Teaching"
 
 
   

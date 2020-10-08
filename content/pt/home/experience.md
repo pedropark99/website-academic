@@ -5,7 +5,7 @@ headless = true  # This file represents a page section.
 active = true  # Activate this widget? true/false
 weight = 40  # Order that this section will appear.
 
-title = "Experience"
+title = "Experiências profissionais"
 subtitle = ""
 
 # Date format for experience
@@ -18,36 +18,36 @@ date_format = "Jan 2006"
 #   Leave `date_end` empty if it's your current employer.
 #   Begin/end multi-line descriptions with 3 quotes `"""`.
 [[experience]]
-  title = "Intern"
-  company = "João Pinheiro Foundation"
+  title = "Estagiário"
+  company = "Fundação João Pinheiro"
   company_url = "http://novosite.fjp.mg.gov.br/"
-  location = "Belo Horizonte - MG, Brazil"
+  location = "Belo Horizonte - MG, Brasil"
   date_start = "2019-06-01"
   date_end = ""
   description = """
   Responsibilities include:
   
-  * Data analysis
-  * Automate tasks
-  * Teach R Language
+  * Análise de dados
+  * Automatizar tarefas
+  * Ensinar a linguagem R
   """
 
 
 
 
 [[experience]]
-  title = "Intern of Business Inteligence"
+  title = "Estagiário de Business Inteligence"
   company = "Fideleasy Consultoria"
-  company_url = ""
-  location = "Belo Horizonte - MG, Brazil"
+  company_url = "https://www.linkedin.com/company/fideleasybrasil"
+  location = "Belo Horizonte - MG, Brasil"
   date_start = "2019-02-01"
   date_end = "2019-06-01"
   description = """
   Responsibilities include:
     
-  * Create new compliance indicators
-  * Data analysis
-  * Automate tasks
+  * Criar novos indicadores para o setor de Compliance
+  * Análise de dados
+  * Automatizar tarefas
   """
 
 

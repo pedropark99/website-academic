@@ -5,7 +5,7 @@ headless = true  # This file represents a page section.
 active = true  # Activate this widget? true/false
 weight = 40  # Order that this section will appear.
 
-title = "Experiências profissionais"
+title = "Experiências Profissionais"
 subtitle = ""
 
 # Date format for experience
@@ -18,14 +18,14 @@ date_format = "Jan 2006"
 #   Leave `date_end` empty if it's your current employer.
 #   Begin/end multi-line descriptions with 3 quotes `"""`.
 [[experience]]
-  title = "Estagiário"
+  title = "Estagiário no Departamento de Estatística e Informações"
   company = "Fundação João Pinheiro"
   company_url = "http://novosite.fjp.mg.gov.br/"
   location = "Belo Horizonte - MG, Brasil"
   date_start = "2019-06-01"
   date_end = ""
   description = """
-  Responsibilities include:
+  Responsabilidades incluíam:
   
   * Análise de dados
   * Automatizar tarefas
@@ -43,7 +43,7 @@ date_format = "Jan 2006"
   date_start = "2019-02-01"
   date_end = "2019-06-01"
   description = """
-  Responsibilities include:
+  Responsabilidades incluíam:
     
   * Criar novos indicadores para o setor de Compliance
   * Análise de dados

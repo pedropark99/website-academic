@@ -1,8 +1,8 @@
 ---
 # Documentation: https://sourcethemes.com/academic/docs/managing-content/
 
-title: "Curso: Introdução à Linguagem R"
-summary: "Um curso de Introdução à Linguagem que tenho desenvolvido nos últimos meses"
+title: "Course: Introduction to R Language"
+summary: "A course of introduction to R Language that I had developed in the last months"
 authors: ["Pedro Duarte Faria"]
 tags: ["R Language", "Teaching"]
 categories: []
@@ -44,22 +44,24 @@ slides: ""
 
 
 
-# Sobre o projeto
+# About the project
 
-Como a revista *The Economist*[^1] colocou: "Dados são o combustível do futuro". Essa nova dimensão tem gerado mudanças profundas sobre como a nossa economia tem se estruturado, e exigido novas capacidades tanto análiticas, quanto computacionais. Por essas razões, aprender novas ferramentas mais eficientes e que dão maior suporte à análise de dados, tem se tornado uma necessidade maior no mercado de trabalho. 
+The magazine *The Economist*[^1] stated: "Data are the fuel of the future". This new dimension has generated profound changes on how our economy has been structured, and has demanded new analytical and computational capabilities. For these reasons, learning new tools that are more efficient and give more support to our data analysis, has become a greater need in the job market.
 
-Este projeto foi criado com o objetivo de compartilhar conhecimento com outras pessoas. Um conhecimento que possa tornar a análise de dados, mais fluida, rápida e segura. Sempre gostei muito de ensinar, e após conhecer a Linguagem R, tenho mergulhado cada vez mais fundo neste projeto.
+This project was designed to share knowledge with the Brazilian public (that still lacks on support materials for the R Language). A knowledge that can make our data analysis, more fluid, fast and secure. I always liked to teach, and after knowing the R Language, I have been diving deeper and deeper in the language.
 
-Eu não pretendo criar um curso abrangente, pois são muitos os conhecimentos[^2] envolvidos em uma linguagem de programação, que podem ser essenciais à sua análise. Por isso, este é um curso introdutório, que mostra os principais conceitos básicos do R, e de como implementá-lo em sua análise.
+I do not pretend to create an broad course (in the sense of going from novice to advanced), because there are many topics that are very important to the subject[^2] (data analysis using R). That is why, this is a introductory course, focusing on the basics and core ideas behind R, and on how to implement it in your analysis.
 
+# For more details
 
-
-
-[^1]: Para ler o artigo completo, veja: https://www.economist.com/briefing/2017/05/06/data-is-giving-rise-to-a-new-economy.
-
-[^2]: *Encoding*, métodos S3 e S4, *closures* e *environments* são apenas alguns dos conhecimentos que podem fazer grande diferença, durante a sua análise.
+Because this is a project focusing on the brazilian public, if you want to find out more, you can access the portuguese version of this project[^3].
 
 
+[^1]: The complete article: https://www.economist.com/briefing/2017/05/06/data-is-giving-rise-to-a-new-economy.
+
+[^2]: *Encoding*, S3 and S4 methos, *closures* and *environments* are just a few topics that can be very important for your analysis, depending on what you want to do.
+
+[^3]: https://pedro-faria.netlify.app/pt/project/r_curso/.
 
 
 

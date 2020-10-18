@@ -20,10 +20,50 @@ tags: ["R Language", "Teaching"]
 <p>As respostas ao formulário não tinham um padrão bem definido, e por isso algumas respostas tiveram que ser ajustadas. Ao final desse ajuste, percebemos que pessoas de 60 instituições diferentes responderam ao formulário.</p>
 <pre class="r"><code>nrow(instituicoes)</code></pre>
 <pre><code>## [1] 60</code></pre>
-<p>Talvez o mais impressionante de tudo isso, é que tivemos pessoas de outros países interessadas no curso. Cada um desses outros países obtiveram apenas uma assinatura, mas mesmo assim, é no mínimo interessante ver o quão longe fomos. Os países atingidos (fora o Brasil), e as respectivas instituições dessas pessoas foram: Venezuela (Universidad de Carabobo); Cuba (Universidad de la Havana); Moçambique (ISRI - Instituto Superior De Relações Internacionais); e Peru (Universidad Nacional de Ingeniaria).</p>
+<p>A maior parte das instituições às quais os respondentes pertenciam, estão localizadas na região Sudeste, com 22 instituições, enquanto o Nordeste vem logo em seguida com 16 insituições. Agora, as instituições que não foram designadas para alguma região (<code>NA</code>), são na verdade instituições de fora do Brasil. Isso significa que tivemos 4 respostas vindas de outros países, ao formulário de interesse no curso.</p>
 <pre class="r"><code>library(tidyverse)
 
-cores &lt;- c(
+instituicoes %&gt;% 
+  group_by(Regiao) %&gt;% 
+  summarise(contagem = n())</code></pre>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 6 x 2
+##   Regiao       contagem
+##   &lt;chr&gt;           &lt;int&gt;
+## 1 Centro Oeste        3
+## 2 Nordeste           16
+## 3 Norte               8
+## 4 Sudeste            22
+## 5 Sul                 7
+## 6 &lt;NA&gt;                4</code></pre>
+<pre class="r"><code>library(geobr)
+library(tidyverse)
+
+brasil &lt;- read_state()</code></pre>
+<pre class="r"><code>contagem &lt;- instituicoes %&gt;%
+  group_by(Estado) %&gt;%
+  summarise(contagem = n())</code></pre>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre class="r"><code>brasil &lt;- brasil %&gt;%
+  left_join(contagem, by = c(&quot;name_state&quot; = &quot;Estado&quot;))
+
+ggplot(data = brasil) +
+  geom_sf(aes(fill = name_region)) +
+  stat_sf_coordinates(
+    aes(label = contagem),
+    geom = &quot;text&quot;
+  ) +
+  theme_void() +
+  labs(
+    title = &quot;Número de respostas em cada estado&quot;,
+    fill = &quot;Região&quot;
+  )</code></pre>
+<pre><code>## Warning in st_point_on_surface.sfc(sf::st_zm(x)): st_point_on_surface may not
+## give correct results for longitude/latitude data</code></pre>
+<pre><code>## Warning: Removed 6 rows containing missing values (geom_text).</code></pre>
+<p><img src="/pt/post/2020-10-17-resultados-do-formulário-de-pesquisa-de-interesse-curso-introdutório-de-r/index.pt_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>Talvez o mais impressionante de tudo isso, é que tivemos pessoas de outros países interessadas no curso. Cada um desses outros países obtiveram apenas uma assinatura, mas mesmo assim, é no mínimo interessante ver o quão longe fomos. Os países atingidos (fora o Brasil), e as respectivas instituições dessas pessoas foram: Venezuela (Universidad de Carabobo); Cuba (Universidad de la Havana); Moçambique (ISRI - Instituto Superior De Relações Internacionais); e Peru (Universidad Nacional de Ingeniaria).</p>
+<pre class="r"><code>cores &lt;- c(
   &quot;Brazil&quot; = &quot;#F8766D&quot;,
   &quot;Cuba&quot; = &quot;#BB9D00&quot;,
   &quot;Mozambique&quot; = &quot;#7CAE00&quot;,
@@ -48,7 +88,7 @@ ggplot(data = world) +
     labels = names(cores),
     breaks = unname(cores)
   )</code></pre>
-<p><img src="/pt/post/2020-10-17-resultados-do-formulário-de-pesquisa-de-interesse-curso-introdutório-de-r/index.pt_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="/pt/post/2020-10-17-resultados-do-formulário-de-pesquisa-de-interesse-curso-introdutório-de-r/index.pt_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 </div>
 <div class="footnotes">
 <hr />

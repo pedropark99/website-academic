@@ -17,20 +17,39 @@ instituicoes <- unique(instituicoes$abbrev)
 
 instituicoes
 
+distri_inst <- data.frame(
+  inst = instituicoes,
+  regiao = NA,
+  estado = NA
+)
 
-world$marca <- NA
-world$marca[world$name == "Mozambique"] <- "Mozambique"
-world$marca[world$name == "Peru"] <- "Peru"
-world$marca[world$name == "Brazil"] <- "Brazil"
-world$marca[world$name == "Cuba"] <- "Cuba"
+
+brasil <- read_state()
 
 
-ggplot(data = world) +
-  geom_sf(aes(fill = marca)) +
-  coord_sf(xlim = c(-100, 50), ylim = c(-60, 40)) +
-  theme_void() +
-  labs(
-    title = "Países atingidos pelo formulário",
-    fill = "País de referência"
+respostas %>%
+  left_join()
+
+
+contagem <- instituicoes %>%
+  filter(!is.na(Estado)) %>%
+  group_by(Estado) %>%
+  count()
+
+
+brasil <- brasil %>%
+  left_join(contagem, by = c("name_state" = "Estado"))
+
+ggplot(data = brasil) +
+  geom_sf(aes(fill = name_region)) +
+  stat_sf_coordinates(
+    aes(label = n),
+    geom = "text"
   ) +
-  theme(legend.position = "bottom")
+  theme_void() +
+  labs(fill = "Região")
+
+
+
+
+

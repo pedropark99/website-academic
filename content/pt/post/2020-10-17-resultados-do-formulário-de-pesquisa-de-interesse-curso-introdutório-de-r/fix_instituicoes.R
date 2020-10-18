@@ -160,3 +160,13 @@ teste <- grepl(
 )
 
 instituicoes$abbrev[teste] <- "UESC"
+
+
+teste <- grepl(
+  pattern = "UFMG",
+  x = instituicoes$inst,
+  ignore.case = TRUE
+)
+
+instituicoes$abbrev[teste] <- "UFMG"
+

@@ -26,9 +26,16 @@ library(rgeos)
 
 world <- ne_countries(scale = "medium", returnclass = "sf")
 
-respostas <- read_excel("C:/Users/Pedro/Documents/Personal-website/static/data/formulario_pesquisa_interesse.xlsx")
+respostas <- read_excel("C:/Users/Pedro/Documents/formulario_pesquisa_interesse.xlsx")
 
-instituicoes <- read_csv("C:/Users/Pedro/Documents/Personal-website/content/pt/post/2020-10-17-resultados-do-formulário-de-pesquisa-de-interesse-curso-introdutório-de-r/instituicoes.csv")
+instituicoes <- read_csv2("C:/Users/Pedro/Documents/Personal-website/content/pt/post/2020-10-17-resultados-do-formulário-de-pesquisa-de-interesse-curso-introdutório-de-r/instituicoes.csv",
+                          locale = locale(encoding = "Latin1"))
+
+
+library(geobr)
+library(tidyverse)
+
+brasil <- read_state()
 ```
 
 
@@ -49,6 +56,55 @@ As respostas ao formulário não tinham um padrão bem definido, e por isso algu
 ```{r}
 nrow(instituicoes)
 ```
+
+
+A maior parte das instituições às quais os respondentes pertenciam, estão localizadas na região Sudeste, com 22 instituições, enquanto o Nordeste vem logo em seguida com 16 insituições. Agora, as instituições que não foram designadas para alguma região (`NA`), são na verdade instituições de fora do Brasil. Isso significa que tivemos 4 respostas vindas de outros países, ao formulário de interesse no curso.
+
+
+```{r}
+library(tidyverse)
+
+instituicoes %>% 
+  group_by(Regiao) %>% 
+  summarise(contagem = n())
+```
+
+
+
+```{r, eval = FALSE}
+library(geobr)
+library(tidyverse)
+
+brasil <- read_state()
+```
+
+```{r}
+contagem <- instituicoes %>%
+  group_by(Estado) %>%
+  summarise(contagem = n())
+
+
+brasil <- brasil %>%
+  left_join(contagem, by = c("name_state" = "Estado"))
+
+ggplot(data = brasil) +
+  geom_sf(aes(fill = name_region)) +
+  stat_sf_coordinates(
+    aes(label = contagem),
+    geom = "text"
+  ) +
+  theme_void() +
+  labs(
+    title = "Número de respostas em cada estado",
+    fill = "Região"
+  )
+
+```
+
+
+
+
+
 
 ```{r, include=F}
 library(rnaturalearth)
@@ -72,8 +128,6 @@ Talvez o mais impressionante de tudo isso, é que tivemos pessoas de outros paí
 
 
 ```{r}
-library(tidyverse)
-
 cores <- c(
   "Brazil" = "#F8766D",
   "Cuba" = "#BB9D00",

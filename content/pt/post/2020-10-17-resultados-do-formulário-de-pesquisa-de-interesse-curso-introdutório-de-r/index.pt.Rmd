@@ -28,6 +28,10 @@ world <- ne_countries(scale = "medium", returnclass = "sf")
 
 respostas <- read_excel("C:/Users/Pedro/Documents/formulario_pesquisa_interesse.xlsx")
 
+
+source("C:/Users/Pedro/Documents/Personal-website/content/pt/post/2020-10-17-resultados-do-formulário-de-pesquisa-de-interesse-curso-introdutório-de-r/fix_instituicoes.R", encoding = "UTF-8")
+
+
 instituicoes <- read_csv2("C:/Users/Pedro/Documents/Personal-website/content/pt/post/2020-10-17-resultados-do-formulário-de-pesquisa-de-interesse-curso-introdutório-de-r/instituicoes.csv",
                           locale = locale(encoding = "Latin1"))
 
@@ -51,14 +55,14 @@ nrow(respostas)
 ```
 
 
-As respostas ao formulário não tinham um padrão bem definido, e por isso algumas respostas tiveram que ser ajustadas. Ao final desse ajuste, percebemos que pessoas de 60 instituições diferentes responderam ao formulário.
+As respostas ao formulário não tinham um padrão bem definido, e por isso algumas respostas tiveram que ser ajustadas. Ao final desse ajuste, percebemos que pessoas de 61 instituições diferentes responderam ao formulário.
 
 ```{r}
 nrow(instituicoes)
 ```
 
 
-A maior parte das instituições às quais os respondentes pertenciam, estão localizadas na região Sudeste, com 22 instituições, enquanto o Nordeste vem logo em seguida com 16 insituições. Agora, as instituições que não foram designadas para alguma região (`NA`), são na verdade instituições de fora do Brasil. Isso significa que tivemos 4 respostas vindas de outros países, ao formulário de interesse no curso.
+A maior parte das instituições às quais os respondentes pertenciam, estão localizadas na região Sudeste, com 22 instituições, enquanto o Nordeste vem logo em seguida com 16 insituições. Agora, as instituições que não foram designadas para alguma região (`NA`), são na verdade instituições de fora do Brasil. Isso significa que tivemos 5 respostas vindas de outros países, ao formulário de interesse no curso.
 
 
 ```{r}
@@ -71,37 +75,38 @@ instituicoes %>%
 
 
 
-```{r, eval = FALSE}
+A maioria das pessoas que responderam ao formulário, provinham de instituições localizadas em Minas Gerais. Grande parte das respostas foram da UFOP (que é a instituição na qual estudo), totalizando 22 respostas. Além disso, não recebemos respostas de alguns estados, que estão marcados em cinza no gráfico abaixo:
+
+
+```{r, eval = F}
 library(geobr)
-library(tidyverse)
 
 brasil <- read_state()
 ```
 
+
+
 ```{r}
-contagem <- instituicoes %>%
-  group_by(Estado) %>%
+resp_sum <- respostas %>%
+  select(Regiao, Instituicao, abbrev, Estado) %>%
+  group_by(Estado, Regiao) %>%
   summarise(contagem = n())
 
-
 brasil <- brasil %>%
-  left_join(contagem, by = c("name_state" = "Estado"))
+  left_join(resp_sum, by = c("name_state" = "Estado"))
 
 ggplot(data = brasil) +
-  geom_sf(aes(fill = name_region)) +
+  geom_sf(aes(fill = Regiao)) +
   stat_sf_coordinates(
     aes(label = contagem),
     geom = "text"
   ) +
   theme_void() +
   labs(
-    title = "Número de respostas em cada estado",
+    title = "Número de respostas provenientes de cada estado brasileiro",
     fill = "Região"
   )
-
 ```
-
-
 
 
 
@@ -119,12 +124,13 @@ world$marca[world$name == "Peru"] <- "Peru"
 world$marca[world$name == "Brazil"] <- "Brazil"
 world$marca[world$name == "Cuba"] <- "Cuba"
 world$marca[world$name == "Venezuela"] <- "Venezuela"
+world$marca[world$name == "Portugal"] <- "Portugal"
 world$marca[is.na(world$marca)] <- "Não foi atingido"
 ```
 
 
 
-Talvez o mais impressionante de tudo isso, é que tivemos pessoas de outros países interessadas no curso. Cada um desses outros países obtiveram apenas uma assinatura, mas mesmo assim, é no mínimo interessante ver o quão longe fomos. Os países atingidos (fora o Brasil), e as respectivas instituições dessas pessoas foram: Venezuela (Universidad de Carabobo); Cuba (Universidad de la Havana); Moçambique (ISRI - Instituto Superior De Relações Internacionais); e Peru (Universidad Nacional de Ingeniaria).
+Talvez o mais impressionante de tudo isso, é que tivemos pessoas de outros países interessadas no curso. Cada um desses outros países obtiveram apenas uma assinatura, mas mesmo assim, é no mínimo interessante ver o quão longe fomos. Os países atingidos (fora o Brasil), e as respectivas instituições dessas pessoas foram: Venezuela (Universidad de Carabobo); Cuba (Universidad de la Havana); Moçambique (ISRI - Instituto Superior De Relações Internacionais); e Peru (Universidad Nacional de Ingeniaria); Portugal (Universidade de Lisboa).
 
 
 ```{r}
@@ -134,6 +140,7 @@ cores <- c(
   "Mozambique" = "#7CAE00",
   "Venezuela" = "#00A5FF",
   "Peru" = "#E76BF3",
+  "Portugal" = "#4fc953",
   "Não foi atingido" = "#d4d4d4"
 )
 
@@ -154,4 +161,44 @@ ggplot(data = world) +
     breaks = unname(cores)
   )
 ```
+
+
+
+# Assuntos requisitados
+
+O R é uma linguagem que foi criada por estatísticos, e por isso, é uma linguagem especializada em análise de dados e estatística. Com isso, não é nenhuma surpresa que Econometria e Análise de Séries Temporais, tenham sido as principais sugestões e assuntos requisitados para o curso, pelas pessoas que responderam o formulário.
+
+```{r, eval = FALSE}
+library(wordcloud)
+library(RColorBrewer)
+
+assuntos <- respostas %>%
+  filter(!is.na(Assunto)) %>%
+  group_by(Assunto) %>%
+  count() %>%
+  arrange(n)
+
+cor <- brewer.pal(6, "Dark2")
+names(cor) <- c("1", "3", "5", "8", "2", "4")
+assuntos$color <- cor[as.character(assuntos$n)]
+
+
+wordcloud(
+  words = assuntos$Assunto,
+  freq = assuntos$n,
+  min.freq = 1,
+  max.words = 200,
+  ordered.colors = TRUE,
+  rot.per = 0.35,
+  use.r.layout = FALSE,
+  scale = c(2,0.5),
+  colors = assuntos$color
+)
+```
+
+
+```{r, echo = FALSE}
+knitr::include_graphics("wordcloud.png")
+```
+
 

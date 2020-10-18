@@ -1,10 +1,10 @@
 Insti;Regiao;Estado
 UFOP;Sudeste;Minas Gerais
 UFS;Nordeste;Sergipe
-UFMA;Norte;Maranhão
+UFMA;Nordeste;Maranhão
 UESB;Nordeste;Bahia
-UFPA;Nordeste;Pará
-UESC;Nordeste;Santa Catarina
+UFPA;Norte;Pará
+UESC;Nordeste;Bahia
 UFRRJ;Sudeste;Rio De Janeiro
 UFMG;Sudeste;Minas Gerais
 UNIMONTES;Sudeste;Minas Gerais
@@ -30,7 +30,7 @@ UFPB;Nordeste;Paraíba
 UNICEUB;Sudeste;Minas Gerais
 UFC;Nordeste;Ceará
 ISL WYDEN;Nordeste;Maranhão
-IFTO;Nordeste;Tocantins
+IFTO;Norte;Tocantins
 UFRN;Nordeste;Rio Grande Do Norte
 UEMG;Sudeste;Minas Gerais
 UFRN;Nordeste;Rio Grande Do Norte
@@ -59,3 +59,4 @@ UFAM;Norte;Amazonas
 UFJF;Sudeste;Minas Gerais
 UNIVERSIDADE DE LISBOA;;
 UFRGS;Sul;Rio Grande Do Sul
+UNIVERSIDAD DE CARABOBO;;

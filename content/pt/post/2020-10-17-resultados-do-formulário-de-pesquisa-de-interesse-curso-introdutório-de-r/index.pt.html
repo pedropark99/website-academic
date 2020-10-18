@@ -17,10 +17,10 @@ tags: ["R Language", "Teaching"]
 <p>No momento em que estou montando essa análise, tivemos no total, 117 respostas ao formulário. Mesmo sendo um número relativamente pequeno de pessoas, atingimos os mais diversos locais do país, abrangendo todas as cinco regiões do país.</p>
 <pre class="r"><code>nrow(respostas)</code></pre>
 <pre><code>## [1] 117</code></pre>
-<p>As respostas ao formulário não tinham um padrão bem definido, e por isso algumas respostas tiveram que ser ajustadas. Ao final desse ajuste, percebemos que pessoas de 60 instituições diferentes responderam ao formulário.</p>
+<p>As respostas ao formulário não tinham um padrão bem definido, e por isso algumas respostas tiveram que ser ajustadas. Ao final desse ajuste, percebemos que pessoas de 61 instituições diferentes responderam ao formulário.</p>
 <pre class="r"><code>nrow(instituicoes)</code></pre>
-<pre><code>## [1] 60</code></pre>
-<p>A maior parte das instituições às quais os respondentes pertenciam, estão localizadas na região Sudeste, com 22 instituições, enquanto o Nordeste vem logo em seguida com 16 insituições. Agora, as instituições que não foram designadas para alguma região (<code>NA</code>), são na verdade instituições de fora do Brasil. Isso significa que tivemos 4 respostas vindas de outros países, ao formulário de interesse no curso.</p>
+<pre><code>## [1] 61</code></pre>
+<p>A maior parte das instituições às quais os respondentes pertenciam, estão localizadas na região Sudeste, com 22 instituições, enquanto o Nordeste vem logo em seguida com 16 insituições. Agora, as instituições que não foram designadas para alguma região (<code>NA</code>), são na verdade instituições de fora do Brasil. Isso significa que tivemos 5 respostas vindas de outros países, ao formulário de interesse no curso.</p>
 <pre class="r"><code>library(tidyverse)
 
 instituicoes %&gt;% 
@@ -31,44 +31,46 @@ instituicoes %&gt;%
 ##   Regiao       contagem
 ##   &lt;chr&gt;           &lt;int&gt;
 ## 1 Centro Oeste        3
-## 2 Nordeste           16
-## 3 Norte               8
+## 2 Nordeste           15
+## 3 Norte               9
 ## 4 Sudeste            22
 ## 5 Sul                 7
-## 6 &lt;NA&gt;                4</code></pre>
+## 6 &lt;NA&gt;                5</code></pre>
+<p>A maioria das pessoas que responderam ao formulário, provinham de instituições localizadas em Minas Gerais. Grande parte das respostas foram da UFOP (que é a instituição na qual estudo), totalizando 22 respostas. Além disso, não recebemos respostas de alguns estados, que estão marcados em cinza no gráfico abaixo:</p>
 <pre class="r"><code>library(geobr)
-library(tidyverse)
 
 brasil &lt;- read_state()</code></pre>
-<pre class="r"><code>contagem &lt;- instituicoes %&gt;%
-  group_by(Estado) %&gt;%
+<pre class="r"><code>resp_sum &lt;- respostas %&gt;%
+  select(Regiao, Instituicao, abbrev, Estado) %&gt;%
+  group_by(Estado, Regiao) %&gt;%
   summarise(contagem = n())</code></pre>
-<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre><code>## `summarise()` regrouping output by &#39;Estado&#39; (override with `.groups` argument)</code></pre>
 <pre class="r"><code>brasil &lt;- brasil %&gt;%
-  left_join(contagem, by = c(&quot;name_state&quot; = &quot;Estado&quot;))
+  left_join(resp_sum, by = c(&quot;name_state&quot; = &quot;Estado&quot;))
 
 ggplot(data = brasil) +
-  geom_sf(aes(fill = name_region)) +
+  geom_sf(aes(fill = Regiao)) +
   stat_sf_coordinates(
     aes(label = contagem),
     geom = &quot;text&quot;
   ) +
   theme_void() +
   labs(
-    title = &quot;Número de respostas em cada estado&quot;,
+    title = &quot;Número de respostas provenientes de cada estado brasileiro&quot;,
     fill = &quot;Região&quot;
   )</code></pre>
 <pre><code>## Warning in st_point_on_surface.sfc(sf::st_zm(x)): st_point_on_surface may not
 ## give correct results for longitude/latitude data</code></pre>
 <pre><code>## Warning: Removed 6 rows containing missing values (geom_text).</code></pre>
 <p><img src="/pt/post/2020-10-17-resultados-do-formulário-de-pesquisa-de-interesse-curso-introdutório-de-r/index.pt_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
-<p>Talvez o mais impressionante de tudo isso, é que tivemos pessoas de outros países interessadas no curso. Cada um desses outros países obtiveram apenas uma assinatura, mas mesmo assim, é no mínimo interessante ver o quão longe fomos. Os países atingidos (fora o Brasil), e as respectivas instituições dessas pessoas foram: Venezuela (Universidad de Carabobo); Cuba (Universidad de la Havana); Moçambique (ISRI - Instituto Superior De Relações Internacionais); e Peru (Universidad Nacional de Ingeniaria).</p>
+<p>Talvez o mais impressionante de tudo isso, é que tivemos pessoas de outros países interessadas no curso. Cada um desses outros países obtiveram apenas uma assinatura, mas mesmo assim, é no mínimo interessante ver o quão longe fomos. Os países atingidos (fora o Brasil), e as respectivas instituições dessas pessoas foram: Venezuela (Universidad de Carabobo); Cuba (Universidad de la Havana); Moçambique (ISRI - Instituto Superior De Relações Internacionais); e Peru (Universidad Nacional de Ingeniaria); Portugal (Universidade de Lisboa).</p>
 <pre class="r"><code>cores &lt;- c(
   &quot;Brazil&quot; = &quot;#F8766D&quot;,
   &quot;Cuba&quot; = &quot;#BB9D00&quot;,
   &quot;Mozambique&quot; = &quot;#7CAE00&quot;,
   &quot;Venezuela&quot; = &quot;#00A5FF&quot;,
   &quot;Peru&quot; = &quot;#E76BF3&quot;,
+  &quot;Portugal&quot; = &quot;#4fc953&quot;,
   &quot;Não foi atingido&quot; = &quot;#d4d4d4&quot;
 )
 
@@ -89,6 +91,36 @@ ggplot(data = world) +
     breaks = unname(cores)
   )</code></pre>
 <p><img src="/pt/post/2020-10-17-resultados-do-formulário-de-pesquisa-de-interesse-curso-introdutório-de-r/index.pt_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+</div>
+<div id="assuntos-requisitados" class="section level1">
+<h1>Assuntos requisitados</h1>
+<p>O R é uma linguagem que foi criada por estatísticos, e por isso, é uma linguagem especializada em análise de dados e estatística. Com isso, não é nenhuma surpresa que Econometria e Análise de Séries Temporais, tenham sido as principais sugestões e assuntos requisitados para o curso, pelas pessoas que responderam o formulário.</p>
+<pre class="r"><code>library(wordcloud)
+library(RColorBrewer)
+
+assuntos &lt;- respostas %&gt;%
+  filter(!is.na(Assunto)) %&gt;%
+  group_by(Assunto) %&gt;%
+  count() %&gt;%
+  arrange(n)
+
+cor &lt;- brewer.pal(6, &quot;Dark2&quot;)
+names(cor) &lt;- c(&quot;1&quot;, &quot;3&quot;, &quot;5&quot;, &quot;8&quot;, &quot;2&quot;, &quot;4&quot;)
+assuntos$color &lt;- cor[as.character(assuntos$n)]
+
+
+wordcloud(
+  words = assuntos$Assunto,
+  freq = assuntos$n,
+  min.freq = 1,
+  max.words = 200,
+  ordered.colors = TRUE,
+  rot.per = 0.35,
+  use.r.layout = FALSE,
+  scale = c(2,0.5),
+  colors = assuntos$color
+)</code></pre>
+<p><img src="wordcloud.png" /><!-- --></p>
 </div>
 <div class="footnotes">
 <hr />

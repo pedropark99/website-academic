@@ -1,7 +1,7 @@
 library(stringr)
 
 instituicoes <- data.frame(
-  inst = str_to_upper(unique(respostas$Instituicao))
+  inst = str_to_upper(respostas$Instituicao)
 )
 
 instituicoes$abbrev <- instituicoes$inst
@@ -169,4 +169,17 @@ teste <- grepl(
 )
 
 instituicoes$abbrev[teste] <- "UFMG"
+
+
+
+reg_inst <- read_csv2("C:/Users/Pedro/Documents/Personal-website/content/pt/post/2020-10-17-resultados-do-formulário-de-pesquisa-de-interesse-curso-introdutório-de-r/instituicoes.csv",
+                          locale = locale(encoding = "Latin1"))
+
+
+respostas <- respostas %>%
+  mutate(Instituicao_UP = str_to_upper(Instituicao)) %>%
+  left_join(instituicoes, by = c("Instituicao_UP" = "inst")) %>%
+  left_join(reg_inst, c("abbrev" = "Insti")) %>%
+  as_tibble() %>%
+  distinct()
 

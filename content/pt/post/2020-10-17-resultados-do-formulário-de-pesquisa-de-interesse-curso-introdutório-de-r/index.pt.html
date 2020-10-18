@@ -1,0 +1,59 @@
+---
+title: "Resultados Do Formulário De Pesquisa De Interesse Curso Introdutório De R"
+author: "Pedro Duarte Faria"
+date: 2020-10-17T16:42:34-03:00
+output: html_document
+projects: ["R_curso"]
+tags: ["R Language", "Teaching"]
+---
+
+
+
+<p>Esse post faz parte de um projeto meu, de um Curso Introdutório de R. Esse projeto já tem um ano, que venho aperfeiçoando-o, e a primeira vez que ele foi posto em prática (ou seja, a primeira vez que dei um curso da linguagem) foi no instituto de pesquisa onde trabalho, a Fundação João Pinheiro<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. Foi um momento muito proveitoso, pois uma das melhores formas de se aprender uma matéria, é tentando ensiná-la para outras pessoas.</p>
+<p>Aprimorei e venho aprimorando constatemente o meu conhecimento da linguagem R, e agora, uma nova oportunidade de ensinar essa linguagem, surgiu através de um convite da CORECON-MG<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> Acadêmico. Com a ideia de compreendermos melhor as preferências do potencial público desse curso, nós lançamos um formulário de pesquisa no dia 10/10/2020.</p>
+<p>Neste post, estarei analisando rapidamente as respostas que coletamos por esse formulário. Por motivos óbvios, as informações pessoais daqueles que responderam ao formulário, foram omitidas nesse artigo.</p>
+<div id="tivemos-inclusive-pessoas-de-outros-países" class="section level1">
+<h1>Tivemos inclusive pessoas de outros países!</h1>
+<p>No momento em que estou montando essa análise, tivemos no total, 117 respostas ao formulário. Mesmo sendo um número relativamente pequeno de pessoas, atingimos os mais diversos locais do país, abrangendo todas as cinco regiões do país.</p>
+<pre class="r"><code>nrow(respostas)</code></pre>
+<pre><code>## [1] 117</code></pre>
+<p>As respostas ao formulário não tinham um padrão bem definido, e por isso algumas respostas tiveram que ser ajustadas. Ao final desse ajuste, percebemos que pessoas de 60 instituições diferentes responderam ao formulário.</p>
+<pre class="r"><code>nrow(instituicoes)</code></pre>
+<pre><code>## [1] 60</code></pre>
+<p>Talvez o mais impressionante de tudo isso, é que tivemos pessoas de outros países interessadas no curso. Cada um desses outros países obtiveram apenas uma assinatura, mas mesmo assim, é no mínimo interessante ver o quão longe fomos. Os países atingidos (fora o Brasil), e as respectivas instituições dessas pessoas foram: Venezuela (Universidad de Carabobo); Cuba (Universidad de la Havana); Moçambique (ISRI - Instituto Superior De Relações Internacionais); e Peru (Universidad Nacional de Ingeniaria).</p>
+<pre class="r"><code>library(tidyverse)
+
+cores &lt;- c(
+  &quot;Brazil&quot; = &quot;#F8766D&quot;,
+  &quot;Cuba&quot; = &quot;#BB9D00&quot;,
+  &quot;Mozambique&quot; = &quot;#7CAE00&quot;,
+  &quot;Venezuela&quot; = &quot;#00A5FF&quot;,
+  &quot;Peru&quot; = &quot;#E76BF3&quot;,
+  &quot;Não foi atingido&quot; = &quot;#d4d4d4&quot;
+)
+
+world$cores &lt;- unname(cores[world$marca])
+
+ggplot(data = world) +
+  geom_sf(aes(fill = cores)) +
+  coord_sf(xlim = c(-100, 50), ylim = c(-60, 40)) +
+  theme_void() +
+  labs(
+    title = &quot;Países atingidos pelo formulário&quot;,
+    fill = &quot;País de referência&quot;
+  ) +
+  theme(legend.position = &quot;bottom&quot;) +
+  scale_fill_identity(
+    guide = &quot;legend&quot;,
+    labels = names(cores),
+    breaks = unname(cores)
+  )</code></pre>
+<p><img src="/pt/post/2020-10-17-resultados-do-formulário-de-pesquisa-de-interesse-curso-introdutório-de-r/index.pt_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p><a href="http://novosite.fjp.mg.gov.br/" class="uri">http://novosite.fjp.mg.gov.br/</a><a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>Conselho Regional de Economia Acadêmico de Minas Gerais:<a href="http://corecon-mg.org.br/academico/" class="uri">http://corecon-mg.org.br/academico/</a><a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>

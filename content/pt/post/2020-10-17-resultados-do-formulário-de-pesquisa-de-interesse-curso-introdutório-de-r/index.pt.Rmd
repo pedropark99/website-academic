@@ -1,0 +1,103 @@
+---
+title: "Resultados Do Formulário De Pesquisa De Interesse Curso Introdutório De R"
+author: "Pedro Duarte Faria"
+date: 2020-10-17T16:42:34-03:00
+output: html_document
+projects: ["R_curso"]
+tags: ["R Language", "Teaching"]
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+Esse post faz parte de um projeto meu, de um Curso Introdutório de R. Esse projeto já tem um ano, que venho aperfeiçoando-o, e a primeira vez que ele foi posto em prática (ou seja, a primeira vez que dei um curso da linguagem) foi no instituto de pesquisa onde trabalho, a Fundação João Pinheiro^[http://novosite.fjp.mg.gov.br/]. Foi um momento muito proveitoso, pois uma das melhores formas de se aprender uma matéria, é tentando ensiná-la para outras pessoas.
+
+Aprimorei e venho aprimorando constatemente o meu conhecimento da linguagem R, e agora, uma nova oportunidade de ensinar essa linguagem, surgiu através de um convite da CORECON-MG^[Conselho Regional de Economia Acadêmico de Minas Gerais:http://corecon-mg.org.br/academico/] Acadêmico. Com a ideia de compreendermos melhor as preferências do potencial público desse curso, nós lançamos um formulário de pesquisa no dia 10/10/2020.
+
+
+```{r, include = FALSE}
+library(readxl)
+library(tidyverse)
+library(rnaturalearth)
+library(rnaturalearthdata)
+library(rgeos)
+
+world <- ne_countries(scale = "medium", returnclass = "sf")
+
+respostas <- read_excel("C:/Users/Pedro/Documents/Personal-website/static/data/formulario_pesquisa_interesse.xlsx")
+
+instituicoes <- read_csv("C:/Users/Pedro/Documents/Personal-website/content/pt/post/2020-10-17-resultados-do-formulário-de-pesquisa-de-interesse-curso-introdutório-de-r/instituicoes.csv")
+```
+
+
+Neste post, estarei analisando rapidamente as respostas que coletamos por esse formulário. Por motivos óbvios, as informações pessoais daqueles que responderam ao formulário, foram omitidas nesse artigo.
+
+
+# Tivemos inclusive pessoas de outros países!
+
+No momento em que estou montando essa análise, tivemos no total, 117 respostas ao formulário. Mesmo sendo um número relativamente pequeno de pessoas, atingimos os mais diversos locais do país, abrangendo todas as cinco regiões do país.
+
+```{r}
+nrow(respostas)
+```
+
+
+As respostas ao formulário não tinham um padrão bem definido, e por isso algumas respostas tiveram que ser ajustadas. Ao final desse ajuste, percebemos que pessoas de 60 instituições diferentes responderam ao formulário.
+
+```{r}
+nrow(instituicoes)
+```
+
+```{r, include=F}
+library(rnaturalearth)
+library(rnaturalearthdata)
+library(rgeos)
+
+world <- ne_countries(scale = "medium", returnclass = "sf")
+
+world$marca <- NA
+world$marca[world$name == "Mozambique"] <- "Mozambique"
+world$marca[world$name == "Peru"] <- "Peru"
+world$marca[world$name == "Brazil"] <- "Brazil"
+world$marca[world$name == "Cuba"] <- "Cuba"
+world$marca[world$name == "Venezuela"] <- "Venezuela"
+world$marca[is.na(world$marca)] <- "Não foi atingido"
+```
+
+
+
+Talvez o mais impressionante de tudo isso, é que tivemos pessoas de outros países interessadas no curso. Cada um desses outros países obtiveram apenas uma assinatura, mas mesmo assim, é no mínimo interessante ver o quão longe fomos. Os países atingidos (fora o Brasil), e as respectivas instituições dessas pessoas foram: Venezuela (Universidad de Carabobo); Cuba (Universidad de la Havana); Moçambique (ISRI - Instituto Superior De Relações Internacionais); e Peru (Universidad Nacional de Ingeniaria).
+
+
+```{r}
+library(tidyverse)
+
+cores <- c(
+  "Brazil" = "#F8766D",
+  "Cuba" = "#BB9D00",
+  "Mozambique" = "#7CAE00",
+  "Venezuela" = "#00A5FF",
+  "Peru" = "#E76BF3",
+  "Não foi atingido" = "#d4d4d4"
+)
+
+world$cores <- unname(cores[world$marca])
+
+ggplot(data = world) +
+  geom_sf(aes(fill = cores)) +
+  coord_sf(xlim = c(-100, 50), ylim = c(-60, 40)) +
+  theme_void() +
+  labs(
+    title = "Países atingidos pelo formulário",
+    fill = "País de referência"
+  ) +
+  theme(legend.position = "bottom") +
+  scale_fill_identity(
+    guide = "legend",
+    labels = names(cores),
+    breaks = unname(cores)
+  )
+```
+

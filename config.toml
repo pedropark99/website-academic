@@ -41,6 +41,16 @@ ignoreFiles = ["\\.ipynb$", ".ipynb_checkpoints$", "\\.Rmd$", "\\.Rmarkdown$", "
 
 
 
+[params]
+    highlightjsVersion = "9.12.0"
+    highlightjsCDN = "//cdnjs.cloudflare.com/ajax/libs"
+    highlight_languages = ["r", "bash", "css"]
+    highlight_style = "github"
+    highlightjsTheme = "github"
+    MathJaxCDN = "//cdnjs.cloudflare.com/ajax/libs"
+    MathJaxVersion = "2.7.5"
+
+
 
 [languages]
   [languages.en]

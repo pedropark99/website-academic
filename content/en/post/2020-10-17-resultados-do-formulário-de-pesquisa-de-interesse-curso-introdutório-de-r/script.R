@@ -133,7 +133,7 @@ cor <- brewer.pal(6, "Dark2")
 names(cor) <- c("1", "3", "5", "8", "2", "4")
 assuntos$color <- cor[as.character(assuntos$n)]
 
-png("wordcloud.png", width = 900, height = 800, res = 280, type = "cairo")
+png("wordcloud.png", width = 1800, height = 1600, res = 350, type = "cairo")
 
 set.seed(5)
 wordcloud(
@@ -149,23 +149,4 @@ wordcloud(
 )
 
 dev.off()
-
-
-
-library(lubridate)
-
-respostas <- respostas %>%
-  mutate(
-    hora = hour(Carimbo),
-    periodo_dia = case_when(
-      between(hora, 5, 12) ~ "Manhã",
-      between(hora, 13, 18) ~ "Tarde",
-      between(hora, 19, 23) | between(hora, 0, 4) ~ "Noite"
-    )
-  )
-
-
-plot(table(respostas$hora))
-
-plot(table(respostas$Periodo))
 

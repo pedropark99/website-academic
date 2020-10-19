@@ -1,5 +1,5 @@
 ---
-title: "(Portuguese) Resultados Do Formulário De Pesquisa De Interesse Curso Introdutório De R"
+title: "Resultados do Formulário de Pesquisa de Interesse - Curso Introdutório de R"
 author: "Pedro Duarte Faria"
 date: 2020-10-17T16:42:34-03:00
 output: html_document
@@ -20,7 +20,7 @@ tags: ["R Language", "Teaching"]
 <p>As respostas ao formulário não tinham um padrão bem definido, e por isso algumas respostas tiveram que ser ajustadas. Ao final desse ajuste, percebemos que pessoas de 61 instituições diferentes responderam ao formulário.</p>
 <pre class="r"><code>nrow(instituicoes)</code></pre>
 <pre><code>## [1] 61</code></pre>
-<p>A maior parte das instituições às quais os respondentes pertenciam, estão localizadas na região Sudeste, com 22 instituições, enquanto o Nordeste vem logo em seguida com 16 insituições. Agora, as instituições que não foram designadas para alguma região (<code>NA</code>), são na verdade instituições de fora do Brasil. Isso significa que tivemos 5 respostas vindas de outros países, ao formulário de interesse no curso.</p>
+<p>A maior parte das instituições às quais os respondentes pertenciam, estão localizadas na região Sudeste, com 22 instituições. O Nordeste vem logo em seguida, com 16 insituições. Agora, as instituições que não foram designadas para alguma região (<code>NA</code>), são na verdade instituições de fora do Brasil. Isso significa que tivemos 5 respostas vindas de outros países, ao formulário de interesse no curso.</p>
 <pre class="r"><code>library(tidyverse)
 
 instituicoes %&gt;% 
@@ -36,7 +36,7 @@ instituicoes %&gt;%
 ## 4 Sudeste            22
 ## 5 Sul                 7
 ## 6 &lt;NA&gt;                5</code></pre>
-<p>A maioria das pessoas que responderam ao formulário, provinham de instituições localizadas em Minas Gerais. Grande parte das respostas foram da UFOP (que é a instituição na qual estudo), totalizando 22 respostas. Além disso, não recebemos respostas de alguns estados, que estão marcados em cinza no gráfico abaixo:</p>
+<p>A maioria das pessoas que responderam ao formulário, provinham de instituições localizadas no estado Minas Gerais. Grande parte das respostas foram da UFOP (que é a instituição na qual estudo), totalizando 22 respostas. Além disso, não recebemos respostas de alguns estados, que estão marcados em cinza no gráfico abaixo:</p>
 <pre class="r"><code>library(geobr)
 
 brasil &lt;- read_state()</code></pre>
@@ -62,8 +62,8 @@ ggplot(data = brasil) +
 <pre><code>## Warning in st_point_on_surface.sfc(sf::st_zm(x)): st_point_on_surface may not
 ## give correct results for longitude/latitude data</code></pre>
 <pre><code>## Warning: Removed 6 rows containing missing values (geom_text).</code></pre>
-<p><img src="/en/post/2020-10-17-resultados-do-formulário-de-pesquisa-de-interesse-curso-introdutório-de-r/index.pt_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
-<p>Talvez o mais impressionante de tudo isso, é que tivemos pessoas de outros países interessadas no curso. Cada um desses outros países obtiveram apenas uma assinatura, mas mesmo assim, é no mínimo interessante ver o quão longe fomos. Os países atingidos (fora o Brasil), e as respectivas instituições dessas pessoas foram: Venezuela (Universidad de Carabobo); Cuba (Universidad de la Havana); Moçambique (ISRI - Instituto Superior De Relações Internacionais); e Peru (Universidad Nacional de Ingeniaria); Portugal (Universidade de Lisboa).</p>
+<p><img src="/pt/post/2020-10-17-resultados-do-formulário-de-pesquisa-de-interesse-curso-introdutório-de-r/index.pt_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>Talvez o mais impressionante de tudo isso, é que tivemos pessoas de outros países interessadas no curso. Cada um desses outros países obtiveram apenas uma assinatura, mas mesmo assim, é no mínimo interessante ver o quão longe fomos. Os países atingidos (fora o Brasil), e as respectivas instituições dos respondentes foram: Venezuela (Universidad de Carabobo); Cuba (Universidad de la Havana); Moçambique (ISRI - Instituto Superior De Relações Internacionais); e Peru (Universidad Nacional de Ingeniaria); Portugal (Universidade de Lisboa).</p>
 <pre class="r"><code>cores &lt;- c(
   &quot;Brazil&quot; = &quot;#F8766D&quot;,
   &quot;Cuba&quot; = &quot;#BB9D00&quot;,
@@ -90,7 +90,7 @@ ggplot(data = world) +
     labels = names(cores),
     breaks = unname(cores)
   )</code></pre>
-<p><img src="/en/post/2020-10-17-resultados-do-formulário-de-pesquisa-de-interesse-curso-introdutório-de-r/index.pt_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="/pt/post/2020-10-17-resultados-do-formulário-de-pesquisa-de-interesse-curso-introdutório-de-r/index.pt_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 </div>
 <div id="assuntos-requisitados" class="section level1">
 <h1>Assuntos requisitados</h1>
@@ -122,10 +122,48 @@ wordcloud(
 )</code></pre>
 <p><img src="wordcloud.png" /><!-- --></p>
 </div>
+<div id="áreas-dos-respondentes" class="section level1">
+<h1>Áreas dos respondentes</h1>
+<p>A enorme maioria das pessoas que responderam eram alunos de graduação, ou bachareis já formados. Como pode ser observado logo abaixo, tivemos também algumas pessoas com algum nível de pós-graduação.</p>
+<pre class="r"><code>table(respostas$Nivel)</code></pre>
+<pre><code>## 
+##    Doutorado    Graduação Licenciatura     Mestrado 
+##            5          106            1            5</code></pre>
+<p>Curiosamente, das 10 pessoas que possuíam ou estavam fazendo pós-graduação (mestrado ou doutorado), 6 eram de alguma área da Saúde ou das Ciências Biológicas. Apenas uma dessas 10 pessoas, pertencia a área de Economia. Esse resultado faz sentido, visto que a linguagem R tem se expandido muito em algumas áreas como a epidemiologia e principalmente em análise genética, através de um conjunto de pacotes como o <code>Bioconductor</code><a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>.</p>
+<p>De qualquer maneira, olhando para o número geral de respondentes, a grande maioria do público atingido pelo formulário, foram graduandos (ou bachareis já formados) em Economia, totalizando 65 pessoas.</p>
+<pre class="r"><code>respostas %&gt;% 
+  filter(Area == &quot;Economia&quot;) %&gt;% 
+  nrow()</code></pre>
+<pre><code>## [1] 65</code></pre>
+<p>Quanto às 52 pessoas restantes que não pertencem à area de Economia, as áreas atingidas foram bem diversas. Foram 5 pessoas de Agronomia e 4 pessoas de Geologia. As demais áreas marcadas em laranja abaixo, correspondem a 2 pessoas, enquanto todas as outras em ciano obtiveram apenas 1 respondente.</p>
+<pre class="r"><code>areas &lt;- respostas %&gt;% 
+  filter(Area != &quot;Economia&quot;) %&gt;% 
+  group_by(Area) %&gt;% 
+  count() %&gt;% 
+  arrange(n)
+
+cor &lt;- brewer.pal(5, &quot;Dark2&quot;)
+names(cor) &lt;- unique(areas$n)
+areas$color &lt;- unname(cor[as.character(areas$n)])
+
+wordcloud(
+  words = areas$Area,
+  freq = areas$n,
+  min.freq = 1,
+  max.words = 200,
+  ordered.colors = TRUE,
+  rot.per = 0.35,
+  use.r.layout = FALSE,
+  scale = c(2,0.5),
+  color = areas$color
+)</code></pre>
+<p><img src="areas.png" /><!-- --></p>
+</div>
 <div class="footnotes">
 <hr />
 <ol>
 <li id="fn1"><p><a href="http://novosite.fjp.mg.gov.br/" class="uri">http://novosite.fjp.mg.gov.br/</a><a href="#fnref1" class="footnote-back">↩︎</a></p></li>
 <li id="fn2"><p>Conselho Regional de Economia Acadêmico de Minas Gerais:<a href="http://corecon-mg.org.br/academico/" class="uri">http://corecon-mg.org.br/academico/</a><a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p><a href="https://www.bioconductor.org/" class="uri">https://www.bioconductor.org/</a><a href="#fnref3" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>

@@ -169,3 +169,30 @@ plot(table(respostas$hora))
 
 plot(table(respostas$Periodo))
 
+areas <- respostas %>%
+  filter(Area != "Economia") %>%
+  group_by(Area) %>%
+  count() %>%
+  arrange(n)
+
+cor <- brewer.pal(5, "Dark2")
+names(cor) <- unique(areas$n)
+areas$color <- unname(cor[as.character(areas$n)])
+
+
+png("wordcloud.png", width = 1400, height = 1200, res = 280, type = "cairo")
+
+wordcloud(
+
+  words = areas$Area,
+  freq = areas$n,
+  min.freq = 1,
+  max.words = 200,
+  ordered.colors = TRUE,
+  rot.per = 0.35,
+  use.r.layout = FALSE,
+  scale = c(2,0.5),
+  color = areas$color
+)
+
+dev.off()

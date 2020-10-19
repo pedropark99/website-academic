@@ -210,7 +210,7 @@ A enorme maioria das pessoas que responderam eram alunos de graduação, ou bach
 table(respostas$Nivel)
 ```
 
-Curiosamente, das 10 pessoas que possuíam ou estavam fazendo mestrado ou doutorado, 6 eram de alguma área da Saúde ou das Ciências Biológicas. Apenas uma dessas 10 pessoas, pertencia a área de Economia. Esse resultado faz sentido, visto que a linguagem R tem se expandido muito em algumas áreas como a epidemiologia e principalmente em análise genética, com um conjunto de pacotes como o `Bioconductor`^[https://www.bioconductor.org/].
+Curiosamente, das 10 pessoas que possuíam ou estavam fazendo pós-graduação (mestrado ou doutorado), 6 eram de alguma área da Saúde ou das Ciências Biológicas. Apenas uma dessas 10 pessoas, pertencia a área de Economia. Esse resultado faz sentido, visto que a linguagem R tem se expandido muito em algumas áreas como a epidemiologia e principalmente em análise genética, através de um conjunto de pacotes como o `Bioconductor`^[https://www.bioconductor.org/].
 
 
 
@@ -223,7 +223,7 @@ respostas %>%
   nrow()
 ```
 
-Quanto às 52 pessoas restantes que não pertencem à area de Economia, as áreas atingidas foram bem diversas. Foram 5 pessoas de Agronomia e 4 pessoas de Geologia. As áreas marcadas em laranja abaixo, correspondem a 2 pessoas, enquanto todas as outras em ciano obtiveram apenas 1 respondente.
+Quanto às 52 pessoas restantes que não pertencem à area de Economia, as áreas atingidas foram bem diversas. Foram 5 pessoas de Agronomia e 4 pessoas de Geologia. As demais áreas marcadas em laranja abaixo, correspondem a 2 pessoas, enquanto todas as outras em ciano obtiveram apenas 1 respondente.
 
 ```{r, eval = FALSE}
 areas <- respostas %>% 

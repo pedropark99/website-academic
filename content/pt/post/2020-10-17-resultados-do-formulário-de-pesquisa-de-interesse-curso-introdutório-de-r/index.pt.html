@@ -129,13 +129,13 @@ wordcloud(
 <pre><code>## 
 ##    Doutorado    Graduação Licenciatura     Mestrado 
 ##            5          106            1            5</code></pre>
-<p>Curiosamente, das 10 pessoas que possuíam ou estavam fazendo mestrado ou doutorado, 6 eram de alguma área da Saúde ou das Ciências Biológicas. Apenas uma dessas 10 pessoas, pertencia a área de Economia. Esse resultado faz sentido, visto que a linguagem R tem se expandido muito em algumas áreas como a epidemiologia e principalmente em análise genética, com um conjunto de pacotes como o <code>Bioconductor</code><a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>.</p>
+<p>Curiosamente, das 10 pessoas que possuíam ou estavam fazendo pós-graduação (mestrado ou doutorado), 6 eram de alguma área da Saúde ou das Ciências Biológicas. Apenas uma dessas 10 pessoas, pertencia a área de Economia. Esse resultado faz sentido, visto que a linguagem R tem se expandido muito em algumas áreas como a epidemiologia e principalmente em análise genética, através de um conjunto de pacotes como o <code>Bioconductor</code><a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>.</p>
 <p>De qualquer maneira, olhando para o número geral de respondentes, a grande maioria do público atingido pelo formulário, foram graduandos (ou bachareis já formados) em Economia, totalizando 65 pessoas.</p>
 <pre class="r"><code>respostas %&gt;% 
   filter(Area == &quot;Economia&quot;) %&gt;% 
   nrow()</code></pre>
 <pre><code>## [1] 65</code></pre>
-<p>Quanto às 52 pessoas restantes que não pertencem à area de Economia, as áreas atingidas foram bem diversas. Foram 5 pessoas de Agronomia e 4 pessoas de Geologia. As áreas marcadas em laranja abaixo, correspondem a 2 pessoas, enquanto todas as outras em ciano obtiveram apenas 1 respondente.</p>
+<p>Quanto às 52 pessoas restantes que não pertencem à area de Economia, as áreas atingidas foram bem diversas. Foram 5 pessoas de Agronomia e 4 pessoas de Geologia. As demais áreas marcadas em laranja abaixo, correspondem a 2 pessoas, enquanto todas as outras em ciano obtiveram apenas 1 respondente.</p>
 <pre class="r"><code>areas &lt;- respostas %&gt;% 
   filter(Area != &quot;Economia&quot;) %&gt;% 
   group_by(Area) %&gt;% 

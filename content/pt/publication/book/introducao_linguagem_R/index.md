@@ -2,7 +2,7 @@
 title: "Introdução à Linguagem R: seus fundamentos e sua prática"
 authors:
 - admin
-- João Figueira Amorim Parga
+- João Pedro Figueira Amorim Parga
 date: "2020-11-10T00:00:00Z"
 doi: ""
 

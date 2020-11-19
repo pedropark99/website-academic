@@ -13,7 +13,7 @@ doi: ""
 publication_types: ["5"]
 
 # Publication name and optional abbreviated publication name.
-publication: "Fundação João Pinheiro"
+publication: "Independente"
 publication_short: ""
 
 abstract: "Este livro oferece uma descrição profunda sobre os fundamentos da linguagem R, e como eles se aplicam no contexto da análise de dados. Sua principal contribuição para a literatura brasileira hoje, está no combate de dois problemas recorrentes nos materiais disponíveis em português sobre a linguagem: 1) a falta de profundidade de muitos materiais, que tentam abordar muitos assuntos em um espaço muito curto; 2) a alta especialização de muitos materiais, que são de difícil transposição para aplicações gerais em análises de dados."

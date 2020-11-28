@@ -1,3 +1,4 @@
+{{< myshortcode >}}
 ---
 title: "Introdução à Linguagem R: seus fundamentos e sua prática"
 authors:
@@ -39,7 +40,7 @@ projects: [R_curso]
 ---
 
 
-{{< myshortcode >}}
+
 
 
 

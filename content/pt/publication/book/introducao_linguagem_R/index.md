@@ -1,4 +1,3 @@
-{{< myshortcode >}}
 ---
 title: "Introdução à Linguagem R: seus fundamentos e sua prática"
 authors:
@@ -6,6 +5,9 @@ authors:
 - João Pedro Figueira Amorim Parga
 date: "2020-11-10T00:00:00Z"
 doi: ""
+
+{{< myshortcode >}}
+
 
 # Publication type.
 # Legend: 0 = Uncategorized; 1 = Conference paper; 2 = Journal article;

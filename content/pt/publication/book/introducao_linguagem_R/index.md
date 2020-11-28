@@ -39,7 +39,7 @@ projects: [R_curso]
 ---
 
 
-{{< myshortcode >}}<meta name="google-site-verification" content="Iutp7qgK3azoFuuKWAZ5w4x0HwHsYDHP46sjKmBIMWo" />{{< /myshortcode >}}
+{{< myshortcode >}}
 
 
 

@@ -39,6 +39,10 @@ projects: [R_curso]
 ---
 
 
+{{< myshortcode >}}<meta name="google-site-verification" content="Iutp7qgK3azoFuuKWAZ5w4x0HwHsYDHP46sjKmBIMWo" />{{< /myshortcode >}}
+
+
+
 # Contexto
 
 Esse livro nasceu inicialmente como um material de apoio aos alunos do Curso Introdutório de R, que foi ministrado no primeiro semestre de 2020, na Fundação João Pinheiro (FJP-MG)[^1]. O projeto foi idealizado na época, por um conjunto de três pessoas, dentre elas, estão os autores deste livro: Pedro Duarte Faria e João Pedro Figueira Amorim Parga.

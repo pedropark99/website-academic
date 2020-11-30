@@ -18,7 +18,7 @@ publication_types: ["5"]
 publication: "Independent"
 publication_short: ""
 
-abstract: "Este livro oferece uma descrição profunda sobre os fundamentos da linguagem R, e como eles se aplicam no contexto da análise de dados. Sua principal contribuição para a literatura brasileira hoje, está no combate de dois problemas recorrentes nos materiais disponíveis em português sobre a linguagem: 1) a falta de profundidade de muitos materiais, que tentam abordar muitos assuntos em um espaço muito curto; 2) a alta especialização de muitos materiais, que são de difícil transposição para aplicações gerais em análises de dados."
+abstract: "This book provides an in-depth description of the fundamentals of the R language, and how they apply in the context of data analysis. His main contribution to Brazilian literature today is in the fight of two recurring problems in the materials available in Portuguese on the language: 1) the lack of depth of many materials, which try to address many subjects in a very short space; 2) The high specialization of many materials, which are difficult to transpose for general applications in data analysis."
 
 
 tags: [R Language, Book, Teaching, Brazil, Portuguese]

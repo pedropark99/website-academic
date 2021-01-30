@@ -1,10 +1,9 @@
 ---
-title: "Tabela Destinatária e Tabela Fonte"
+title: "Tabela destinatária e tabela fonte"
 subtitle: "Uma segunda visão sobre *outer joins*"
 summary: "*Outer joins* são um tópico de simples compreensão para a maioria dos alunos. Porém, dificuldades sempre podem surgir em meio a simplicidade do tema. Por isso, este artigo oferece uma segunda abordagem que pode, principalmente, facilitar a memorização de seus alunos sobre o que cada tipo de *outer joins* faz."
 authors: [admin]
 tags: ["Joins", "Teaching", "Book", "R Language"]
-categories: []
 date: 2021-01-02
 featured: false
 draft: false
@@ -19,10 +18,70 @@ projects: ["R_curso"]
 
 
 
+<style type="text/css">
+.hljs{
+  font-family:"Inconsolata";
+  font-size: 17px;
+}
+
+.hljs.shell{
+  font-size: 18px;
+}
+
+.hljs-comment{
+  font-style: normal;
+  color: #222222;
+}
+</style>
 <div id="introdução" class="section level1">
 <h1>Introdução</h1>
-<p><em>Outer joins</em> são um tópico de simples compreensão para a maioria dos alunos. Entretanto, tendo em mente que dificuldades podem emergir dessa simplicidade, esse artigo propõe uma segunda abordagem que foi construída durante uma reformulação recente do capítulo “Introdução a base de dados relacionais” do livro <a href="https://pedro-faria.netlify.app/pt/publication/book/introducao_linguagem_r/">Introdução à Linguagem R: seus fundamentos e sua prática</a>. O ponto de vista apresentado aqui é certamente mais formal e estrito, do que a visão geralmente adotada por professores que estão ensinando <em>outer joins</em>. Pois o seu objetivo é utilizar-se dessa rigidez, como um mecanismo que facilite a memorização do aluno sobre os comportamentos de cada tipo de <em>outer join</em>.</p>
+<p><em>Outer joins</em> são um tópico de simples compreensão para a maioria dos alunos. Entretanto, esse artigo propõe uma segunda abordagem sobre o tema. Tal abordagem foi construída durante uma reformulação recente do capítulo “Introdução a base de dados relacionais” do livro <a href="https://pedro-faria.netlify.app/pt/publication/book/introducao_linguagem_r/">Introdução à Linguagem R: seus fundamentos e sua prática</a>. O ponto de vista apresentado aqui, busca ser estrito, e utiliza essa rigidez como um mecanismo que facilite a memorização do aluno sobre os comportamentos de cada tipo de <em>outer join</em>.</p>
+</div>
+<div id="joins-possuem-sentido-e-direção" class="section level1">
+<h1>Joins possuem sentido e direção</h1>
+<p>Uma operação de <em>join</em> é nada mais do que uma união entre duas tabelas. Por outro lado, temos uma outra opção de interpretação do resultado dessa operação. De modo que, para produzirmos uma tabela que represente a união entre duas tabelas, poderíamos simplesmente extrair todas as colunas de uma das tabelas, e inserí-las na outra tabela.</p>
+<p>Por exemplo, suponha que você possua uma tabela <code>A</code>, que contém duas colunas, chamadas <code>x</code> e <code>y</code>; e uma tabela <code>B</code>, que por sua vez, guarda 4 colunas diferentes, denominadas <code>x</code>, <code>z</code>, <code>r</code>, e <code>t</code>. Perceba que uma das colunas na tabela <code>B</code>, corresponde a mesma coluna <code>x</code> que encontramos na tabela <code>A</code>.</p>
+<pre class="r"><code>library(tibble)
+
+A &lt;- tibble(
+  x = 1:5,
+  y = round(rnorm(5, 2, 1), 2)
+)
+
+B &lt;- tibble(
+  x = 1:5,
+  z = letters[1:5],
+  r = c(3.5, 2.1, 1, 5.6, 7.2),
+  t = &quot;tzu&quot;
+)</code></pre>
+<p>Se você deseja unir as tabelas <code>A</code> e <code>B</code>, você basicamente deseja criar uma nova tabela, que contém todas as cinco colunas dessas duas tabelas (<code>x</code>, <code>y</code>, <code>z</code>, <code>r</code> e <code>t</code>). Portanto, poderíamos imaginar um processo de <em>join</em>, como se estivéssemos transportando todas as colunas da tabela <code>B</code>, para dentro da tabela <code>A</code>. Dessa maneira, temos a tabela abaixo como resultado:</p>
+<pre class="r"><code>library(dplyr)</code></pre>
+<pre class="r"><code>full_join(A, B, by = &quot;x&quot;)</code></pre>
+<pre><code>## # A tibble: 5 x 5
+##       x     y z         r t    
+##   &lt;int&gt; &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;
+## 1     1  0.94 a       3.5 tzu  
+## 2     2  1.98 b       2.1 tzu  
+## 3     3  2.57 c       1   tzu  
+## 4     4  2.24 d       5.6 tzu  
+## 5     5  2.94 e       7.2 tzu</code></pre>
+<p>Com isso, estamos criando a ideia de que <strong>um <em>join</em> possui sempre um sentido e uma direção</strong>. Em outras palavras, primeiro, extraímos as colunas da tabela <code>B</code>, e em seguida, acrescentamos essas colunas à tabela <code>A</code>. Repare que estamos sempre partindo da tabela <code>B</code> em direção a tabela <code>A</code>.</p>
+<p><img src="direcao.PNG" /></p>
+</div>
+<div id="tabela-destinatária-e-tabela-fonte" class="section level1">
+<h1>Tabela destinatária e tabela fonte</h1>
+<p>Por essa perspectiva, podemos interpretar que, em um <em>join</em>, estamos trazendo todas as colunas de uma tabela secundária, para dentro de nossa tabela principal (ou a nossa tabela de interesse). Temos a opção de chamarmos essas tabelas de: <strong>tabela fonte</strong> (tabela secundária) e <strong>tabela destinatária</strong> (tabela principal). Com isso, temos que um <em>join</em> sempre parte da <strong>tabela fonte</strong> em direção à <strong>tabela destinatária</strong>.</p>
+<p>Essa perspectiva faz sentido com a prática de <em>joins</em>. Pois em qualquer análise, nós comumente trabalhamos com uma tabela “principal”, ou uma tabela que contém os principais dados que estamos analisando. E quando utilizamos algum <em>join</em>, estamos geralmente trazendo colunas de outras tabelas para dentro dessa tabela “principal” (ou tabela “destinatária”, segundo essa perspectiva). Por isso, tenha em mente que um <em>join</em> sempre parte da <strong>tabela fonte</strong> em direção à <strong>tabela destinatária</strong>.</p>
 </div>
 <div id="tipos-de-outer-join" class="section level1">
 <h1>Tipos de <em>outer join</em></h1>
+<p>Um <em>join</em> natural (<em>inner join</em>) usualmente gera uma perda de observações de ambas as tabelas envolvidas no processo. Em contrapartida, um <em>join</em> do tipo <em>outer</em> (isto é, um <em>outer join</em>), busca delimitar qual das duas tabelas será preservada no resultado. Ou seja, um <em>outer join</em> busca manter as linhas de pelo menos uma das tabelas envolvidas, no resultado do <em>join</em>.</p>
+<p>Temos três tipos principais de <em>outer joins</em>, que são <em>left join</em>, <em>right join</em> e <em>full join</em>. O <em>full join</em> é o mais simples de se compreender, pois ele busca manter todas as linhas de ambas as tabelas empregadas. Logo, mesmo que haja alguma observação não encontrada em uma das tabelas, ela será preservada no produto final da operação.</p>
+<p>No entanto, <em>left join</em> e <em>right join</em> buscam conservar as linhas de apenas uma das tabelas utilizadas no <em>join</em>. Nesse ponto, muitos professores diriam algo como: “se temos desejamos aplicar um <em>join</em> entre as tabelas <code>A</code> e <code>B</code>, um <em>left join</em> irá manter as linhas da tabela <code>A</code> e um <em>right join</em> vai manter as linhas da tabela <code>B</code>”. Outros professores ainda tentariam dizer: “<em>left join</em> irá manter as linhas da tabela à esquerda, enquanto um <em>right join</em> vai manter as linhas da tabela à direita”. Porém, certa confusão pode ser facilmente aplicada em ambas alternativas. Digo, um aluno pode facilmente enfrentar a seguinte questão: “:thinking: Uhmm… Eu não me lembro muito bem. Um <em>left join</em> mantém as linhas da tabela <code>A</code>? Ou são as linhas da tabela <code>B</code>?”; ou então, “:thinking: Pera! Mas qual das duas tabelas está a direita?”.</p>
+</div>
+<div id="conclusão" class="section level1">
+<h1>Conclusão</h1>
+<p>Com isso, segundo a perspectiva adotada nesse artigo, podemos entender que, um <em>left join</em> e um <em>right join</em> buscam manter as linhas da <strong>tabela destinatária</strong> e da <strong>tabela fonte</strong>, respectivamente. Dessa forma, ao utilizar um <em>right join</em> ou um <em>left join</em>, você deve se questionar o seguinte: “Eu quero manter as linhas de minha tabela principal (tabela destinatária)? Ou da tabela secundária (tabela fonte), de onde estou extraindo as novas colunas?”. Logo, se você deseja manter, por exemplo, as linhas de sua tabela principal (tabela destinatária), que é o que ocorre na maioria das vezes, você sabe agora que você precisa utilizar um <em>left join</em>.</p>
+<p>Em uma representação visual, podemos reproduzir abaixo a imagem inicial desse artigo, que marca as linhas mantidas por cada um desses dois tipos de <em>join</em>.</p>
+<p><img src="featured.png" /></p>
 </div>

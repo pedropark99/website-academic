@@ -27,7 +27,7 @@ featured: true
 # links:
 # - name: ""
 #   url: ""
-url_pdf: "https://www.academia.edu/44520051/Introdu%C3%A7%C3%A3o_%C3%A0_Linguagem_R_seus_fundamentos_e_sua_pr%C3%A1tica"
+url_pdf: "https://www.researchgate.net/publication/345985082_Introducao_a_Linguagem_R_seus_fundamentos_e_sua_pratica"
 
 # Featured image
 

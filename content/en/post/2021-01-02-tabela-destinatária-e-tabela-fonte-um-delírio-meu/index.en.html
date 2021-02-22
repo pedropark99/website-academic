@@ -4,10 +4,10 @@ subtitle: "A second view on *outer joins*"
 summary: "*Outer joins* are a simple topic of understanding for most students. However, difficulties can always arise amid the simplicity of the theme. Therefore, this article offers a second approach that can primarily facilitate the memorization of your students about what each type of *outer joins* does."
 authors: [admin]
 
-output:
-  html_document:
-    includes:
-      in_header: style_ref.html
+#output:
+#  html_document:
+#    includes:
+#      in_header: style_ref.html
       
 
 tags: ["Joins", "Teaching", "Book", "R Language"]
@@ -52,11 +52,11 @@ B &lt;- tibble(
 <pre><code>## # A tibble: 5 x 5
 ##       x     y z         r t    
 ##   &lt;int&gt; &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;
-## 1     1  1.75 a       3.5 tzu  
-## 2     2  1.73 b       2.1 tzu  
-## 3     3  3.17 c       1   tzu  
-## 4     4  3.79 d       5.6 tzu  
-## 5     5  2.4  e       7.2 tzu</code></pre>
+## 1     1  2.7  a       3.5 tzu  
+## 2     2  2.1  b       2.1 tzu  
+## 3     3  2.11 c       1   tzu  
+## 4     4  1.48 d       5.6 tzu  
+## 5     5  3.71 e       7.2 tzu</code></pre>
 <p>With this, we are creating the idea that <strong>a <em>join</em> always has a direction</strong>. In other words, we first extract the columns from table <code>B</code>, and then we add those columns to table <code>A</code>. Note that we are always starting from table <code>B</code> towards table <code>A</code>.</p>
 <p><img src="direcao.PNG" /></p>
 </div>

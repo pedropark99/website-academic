@@ -4,10 +4,10 @@ subtitle: "A second view on *outer joins*"
 summary: "*Outer joins* are a simple topic of understanding for most students. However, difficulties can always arise amid the simplicity of the theme. Therefore, this article offers a second approach that can primarily facilitate the memorization of your students about what each type of *outer joins* does."
 authors: [admin]
 
-output:
-  html_document:
-    includes:
-      in_header: style_ref.html
+#output:
+#  html_document:
+#    includes:
+#      in_header: style_ref.html
       
 
 tags: ["Joins", "Teaching", "Book", "R Language"]
@@ -25,7 +25,7 @@ projects: ["R_curso"]
 
 
 
-```{css, eval = F, include = F}
+```{css, eval = T, include = F}
 .hljs{
   font-family: 'Inconsolata', monospace;
   font-size: 17px;

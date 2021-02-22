@@ -17,9 +17,9 @@ projects: ["R_curso"]
 ---
 
 
-```{css, echo = F}
+```{css, eval = T, echo = F}
 .hljs{
-  font-family:"Inconsolata";
+  font-family: 'Inconsolata', monospace;
   font-size: 17px;
 }
 

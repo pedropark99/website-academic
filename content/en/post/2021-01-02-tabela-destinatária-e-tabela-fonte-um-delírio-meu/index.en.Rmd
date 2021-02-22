@@ -3,14 +3,17 @@ title: "Recipient table and source table"
 subtitle: "A second view on *outer joins*"
 summary: "*Outer joins* are a simple topic of understanding for most students. However, difficulties can always arise amid the simplicity of the theme. Therefore, this article offers a second approach that can primarily facilitate the memorization of your students about what each type of *outer joins* does."
 authors: [admin]
-tags: ["Joins", "Teaching", "Book", "R Language"]
-date: 2021-01-02
-featured: false
-draft: false
+
 output:
   html_document:
     includes:
       in_header: style_ref.html
+      
+
+tags: ["Joins", "Teaching", "Book", "R Language"]
+date: 2021-01-02
+featured: false
+draft: false
 
 image:
   caption: ""
@@ -21,9 +24,10 @@ projects: ["R_curso"]
 ---
 
 
-```{css, echo = F}
+
+```{css, eval = F, include = F}
 .hljs{
-  font-family:"Inconsolata";
+  font-family: 'Inconsolata', monospace;
   font-size: 17px;
 }
 

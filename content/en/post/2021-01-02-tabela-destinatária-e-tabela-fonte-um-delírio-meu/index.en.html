@@ -3,14 +3,17 @@ title: "Recipient table and source table"
 subtitle: "A second view on *outer joins*"
 summary: "*Outer joins* are a simple topic of understanding for most students. However, difficulties can always arise amid the simplicity of the theme. Therefore, this article offers a second approach that can primarily facilitate the memorization of your students about what each type of *outer joins* does."
 authors: [admin]
-tags: ["Joins", "Teaching", "Book", "R Language"]
-date: 2021-01-02
-featured: false
-draft: false
+
 output:
   html_document:
     includes:
       in_header: style_ref.html
+      
+
+tags: ["Joins", "Teaching", "Book", "R Language"]
+date: 2021-01-02
+featured: false
+draft: false
 
 image:
   caption: ""
@@ -22,21 +25,6 @@ projects: ["R_curso"]
 
 
 
-<style type="text/css">
-.hljs{
-  font-family:"Inconsolata";
-  font-size: 17px;
-}
-
-.hljs.shell{
-  font-size: 18px;
-}
-
-.hljs-comment{
-  font-style: normal;
-  color: #222222;
-}
-</style>
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
 <p><em>Outer joins</em> are a simple topic of understanding for most students. However, this article proposes a second approach on the subject. This approach was built during a recent reformulation of the chapter “Introdução a base de dados relacionais”, from the book <a href="https://pedro-faria.netlify.app/pt/publication/book/introducao_linguagem_r/">Introdução à Linguagem R: seus fundamentos e sua prática</a>. The point of view presented here seeks to be strict, and uses this rigidity as a mechanism that facilitates the student`s memorization of the behaviors in each type of <em>outer join</em>.</p>
@@ -64,11 +52,11 @@ B &lt;- tibble(
 <pre><code>## # A tibble: 5 x 5
 ##       x     y z         r t    
 ##   &lt;int&gt; &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;
-## 1     1  2.92 a       3.5 tzu  
-## 2     2  2.27 b       2.1 tzu  
-## 3     3  1.69 c       1   tzu  
-## 4     4  0.21 d       5.6 tzu  
-## 5     5  3.61 e       7.2 tzu</code></pre>
+## 1     1  1.75 a       3.5 tzu  
+## 2     2  1.73 b       2.1 tzu  
+## 3     3  3.17 c       1   tzu  
+## 4     4  3.79 d       5.6 tzu  
+## 5     5  2.4  e       7.2 tzu</code></pre>
 <p>With this, we are creating the idea that <strong>a <em>join</em> always has a direction</strong>. In other words, we first extract the columns from table <code>B</code>, and then we add those columns to table <code>A</code>. Note that we are always starting from table <code>B</code> towards table <code>A</code>.</p>
 <p><img src="direcao.PNG" /></p>
 </div>

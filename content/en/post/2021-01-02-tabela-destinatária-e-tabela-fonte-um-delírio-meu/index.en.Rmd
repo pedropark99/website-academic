@@ -7,6 +7,10 @@ tags: ["Joins", "Teaching", "Book", "R Language"]
 date: 2021-01-02
 featured: false
 draft: false
+output:
+  html_document:
+    includes:
+      in_header: style_ref.html
 
 image:
   caption: ""
